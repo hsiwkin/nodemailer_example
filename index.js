@@ -1,5 +1,6 @@
 const credentials = require('./credentials');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
 
 
 const smtpTransport = nodemailer.createTransport({
@@ -10,12 +11,13 @@ const smtpTransport = nodemailer.createTransport({
     }
 });
 
+
 const mail = {
-    from: "Yashwant Chavan <from@gmail.com>",
+    from: "Hubert Siwkin <from@gmail.com>",
     to: "hsiwkin@gmail.com",
-    subject: "Send Email Using Node.js",
-    text: "Node.js New world for me",
-    html: "<b>Node.js New world for me</b>"
+    subject: "Wiadomość testowa",
+    text: "Tekst wiadomości testowej",
+    html: fs.readFileSync('templates/mail.html', 'utf-8')
 };
 
 smtpTransport.sendMail(mail, (error, response) => {
